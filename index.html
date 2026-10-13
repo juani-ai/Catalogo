@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Catálogo online de CHALA DIET: frutos secos, mixes, semillas y más. Armá tu pedido y envialo por WhatsApp.">
+<title>Catálogo CHALA DIET</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,500&family=Poppins:wght@400;500;600&display=swap">
+<style>
+/* Layout: catálogo de una columna tipo lista de precios impresa, con barra de pedido fija abajo */
+:root{
+  --bg:#E7E4D6; --paper:#F1EEE3; --ink:#2F3527; --muted:#6B6F5C; --olive:#4A5A2E; --gold:#A8812F; --line:#CFCAB6; --accent-ink:#F4F1E6;
+  --display:"Lora", Georgia, "Times New Roman", serif;
+  --body:"Poppins", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1D2117; --paper:#262B1E; --ink:#E9E6D8; --muted:#A9AB98; --olive:#B5C48A; --gold:#D6AE5B; --line:#3A4130; --accent-ink:#1D2117; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1D2117; --paper:#262B1E; --ink:#E9E6D8; --muted:#A9AB98; --olive:#B5C48A; --gold:#D6AE5B; --line:#3A4130; --accent-ink:#1D2117; color-scheme:dark}
+*{box-sizing:border-box}
+html{color-scheme:light}
+:root{padding-top:env(safe-area-inset-top,0px)}
+body{margin:0}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{background:var(--bg); color:var(--ink); font-family:var(--body); font-size:15px; line-height:1.45; padding:0 16px; padding-block:0 120px}
+.wrap{max-width:760px; margin:0 auto}
+header{padding-block:36px 18px; display:flex; flex-direction:column; gap:6px}
+.brand{font-family:var(--display); font-weight:700; font-size:2.6rem; color:var(--olive); line-height:1; letter-spacing:-.5px}
+.sub{font-family:var(--display); font-style:italic; color:var(--gold); font-size:1.15rem}
+.info{color:var(--muted); font-size:.85rem; display:flex; flex-wrap:wrap; gap:4px 16px; margin-top:6px}
+.tools{position:sticky; top:env(safe-area-inset-top,0px); background:var(--bg); padding-block:10px; z-index:5; display:flex; flex-direction:column; gap:10px; border-bottom:1px solid var(--line)}
+.search{width:100%; font:inherit; padding:11px 14px; border:1.5px solid var(--line); border-radius:10px; background:var(--paper); color:var(--ink)}
+.search:focus{outline:2px solid var(--olive); outline-offset:1px}
+.chips{display:flex; gap:8px; overflow-x:auto; padding-bottom:2px; scrollbar-width:thin}
+.chip{flex:0 0 auto; font:500 .78rem var(--body); letter-spacing:.3px; padding:7px 12px; border-radius:999px; border:1.5px solid var(--line); background:transparent; color:var(--ink); cursor:pointer; white-space:nowrap}
+.chip:hover{border-color:var(--olive)}
+.chip:focus-visible,.btn:focus-visible,.step button:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+section{margin-top:26px}
+h2{font-family:var(--display); font-weight:700; color:var(--olive); font-size:1.25rem; text-wrap:balance; margin:0 0 4px; padding-bottom:8px; position:relative}
+h2::after{content:""; position:absolute; left:0; bottom:0; width:38px; height:2px; background:var(--gold)}
+.item{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px 14px; align-items:center; padding:12px 0; border-bottom:1px solid var(--line)}
+.name{font-size:.92rem; min-width:0}
+.pres{display:inline-block; font-style:italic; color:var(--gold); font-size:.75rem; margin-left:6px}
+.right{display:flex; align-items:center; gap:12px; justify-content:flex-end}
+.price{font-weight:600; color:var(--olive); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap}
+.per{display:block; font-weight:400; color:var(--muted); font-size:.7rem}
+.btn{font:600 .8rem var(--body); border:0; border-radius:8px; padding:9px 14px; cursor:pointer; background:var(--olive); color:var(--accent-ink); min-height:40px}
+.btn:hover{filter:brightness(1.08)}
+.step{display:flex; align-items:center; border:1.5px solid var(--olive); border-radius:8px; overflow:hidden; min-height:40px}
+.step button{border:0; background:transparent; color:var(--olive); font:600 1.1rem var(--body); width:36px; height:38px; cursor:pointer}
+.step span{min-width:62px; text-align:center; font-size:.8rem; font-weight:600; font-variant-numeric:tabular-nums}
+.empty{color:var(--muted); padding:30px 0; text-align:center}
+.bar{position:fixed; left:0; right:0; bottom:0; background:var(--olive); color:var(--accent-ink); padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px)); z-index:10}
+.bar .in{max-width:760px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px}
+.bar strong{font-size:1.15rem; font-variant-numeric:tabular-nums}
+.bar .btn{background:var(--gold); color:#1D2117}
+#cart{max-width:760px; margin:30px auto 0; background:var(--paper); border:1.5px solid var(--line); border-radius:14px; padding:20px; display:flex; flex-direction:column; gap:14px}
+#cart h2{font-size:1.4rem}
+.cline{display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:10px; align-items:center; padding-block:8px; border-bottom:1px solid var(--line); font-size:.88rem}
+.cline .sub2{color:var(--muted); font-size:.75rem}
+.total{display:flex; justify-content:space-between; align-items:baseline; font-family:var(--display); font-size:1.5rem; color:var(--olive); font-weight:700}
+label{font-size:.8rem; font-weight:600; display:flex; flex-direction:column; gap:5px}
+input.f,textarea.f{font:inherit; font-weight:400; padding:10px 12px; border:1.5px solid var(--line); border-radius:8px; background:var(--bg); color:var(--ink)}
+.send{display:block; text-align:center; text-decoration:none; font-size:.95rem; padding:14px; border-radius:10px; background:#1F7A45; color:#fff; font-weight:600}
+.note{font-size:.78rem; color:var(--muted)}
+pre.msg{white-space:pre-wrap; font:.8rem/1.5 var(--body); background:var(--bg); border-radius:8px; padding:12px; margin:0; max-height:220px; overflow:auto}
+.row2{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+.ghost{background:transparent; color:var(--olive); border:1.5px solid var(--olive)}
+@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header>
+    <div class="brand">chala.diet</div>
+    <div class="sub">Catálogo online · Lista Agosto 2026</div>
+    <div class="info"><span>Precio por kilo, desde ½ kg. Lo que tiene presentación aclarada se vende cerrado.</span><span>Pedidos lunes, miércoles y viernes</span><span>Entregas martes, jueves y sábado</span><span>WhatsApp 11 2548-1970 · 11 6517-4377</span></div>
+  </header>
+  <div class="tools">
+    <input id="q" class="search" type="search" placeholder="Buscá un producto: nuez, chía, granola…" aria-label="Buscar producto">
+    <nav class="chips" id="chips" aria-label="Categorías"></nav>
+  </div>
+  <main id="list"></main>
+</div>
+
+<div id="cart" hidden>
+  <h2>Tu pedido</h2>
+  <div id="lines"></div>
+  <div class="total"><span>Total estimado</span><span id="tot2">$0</span></div>
+  <label for="nm">Tu nombre<input id="nm" class="f" autocomplete="name"></label>
+  <label for="zn">Zona o dirección de entrega<input id="zn" class="f" autocomplete="street-address"></label>
+  <label for="nt">Nota (opcional)<textarea id="nt" class="f" rows="2"></textarea></label>
+  <a id="wa" class="send" href="#" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a>
+  <p class="note">Si el botón no abre WhatsApp, copiá el mensaje y mandalo al 11 2548-1970.</p>
+  <pre class="msg" id="msg"></pre>
+  <div class="row2"><button class="btn ghost" id="copy" type="button">Copiar mensaje</button><button class="btn ghost" id="clear" type="button">Vaciar pedido</button><span class="note" id="copied" aria-live="polite"></span></div>
+  <p class="note">El total es estimado. Te confirmamos disponibilidad y entrega por WhatsApp.</p>
+</div>
+
+<div class="bar" id="bar" hidden><div class="in"><div><span id="count">0 productos</span><br><strong id="tot">$0</strong></div><a class="btn" href="#cart" id="goCart">Ver pedido</a></div></div>
+
+<script>
+const DATA = [["CHOCOLATES Y BAÑADOS EN CHOCOLATE",[["Maní con chocolate","",16100,1],["Almendra con chocolate","",29300,1],["Avellana con chocolate con leche (Argenfrut)","",34900,1],["Arándanos con chocolate negro/blanco/yogur (Argenfrut)","",29100,1],["Pasas de uva con chocolate (Argenfrut)","",25200,1],["Almendras con chocolate blanco/negro/semiamargo/lemonchelo (Argenfrut)","",40400,1],["Maní con chocolate negro/con leche (Argenfrut)","",19200,1],["Maní con baño de repostería leche (Argenfrut)","",10600,1],["Bananitas con chocolate 600gr (Argenfrut)","600gr",23600,0],["Confite de cereal con chocolate negro/blanco/semiamargo café 700gr (Argenfrut)","700gr",21900,0],["Merenguitos con chocolate con leche 700gr (Argenfrut)","700gr",20800,0],["Botoncitos con dulce de leche (Argenfrut)","",36100,1],["Gotitas de chocolate (Arcor)","",12600,1],["Gotitas de chocolate blanco (Arcor)","",12100,1],["Lentejas de chocolate Rocklets (Arcor)","",24600,1],["Bon o bon snack 800gr (Arcor)","800gr",19500,0],["Botoncitos rellenos de dulce de leche","",18900,1],["Bocaditos Marroc","",18900,1],["Chocolate taza Águila blanco","",32600,1],["Chocolate taza Águila","",28400,1],["Chocolate taza Águila 60% amargo","",38400,1],["Chocolate taza Águila 70% amargo","",38700,1],["Almendra con chocolate 500gr (Chocolart)","1 unid.",18500,0],["Arándanos con chocolate 500gr (Chocolart)","1 unid.",21000,0],["Pasas de uva con chocolate 500gr (Chocolart)","1 unid.",13300,0],["Maní con chocolate 500gr (Chocolart)","1 unid.",10800,0],["Naranja con chocolate semiamargo 500gr (Chocolart)","1 unid.",21000,0],["Gotitas de chocolate semiamargo 500gr (Chocolart)","1 unid.",6500,0],["Gotitas de chocolate blanco 500gr (Chocolart)","1 unid.",6300,0],["Lentejas de chocolate Rocklets 500gr (Chocolart)","1 unid.",12700,0],["Bocaditos cubierto con leche 500gr (Chocolart)","1 unid.",19500,0],["Avellanas con chocolate 500gr (Chocolart)","1 unid.",20000,0],["Baño molde semiamargo 500gr (Alpino)","1 unid.",8300,0]]],["SEMILLAS",[["Semillas de lino","",5000,1],["Semillas de girasol","",4900,1],["Semilla de sésamo negro","",11900,1],["Semilla de sésamo blanco","",7500,1],["Semilla de sésamo integral","",4100,1],["Semilla de quinoa peruana","",11800,1],["Semillas de chía 1era premium","",9500,1],["Semillas de zapallo A","",13200,1],["Semillas de zapallo AA","",20600,1],["Mix de semillas (lino, girasol, sésamo integral y chía B)","",4700,1],["Mix de semillas superior (girasol, lino, zapallo, sésamo integral y chía premium)","",5700,1]]],["CEREALES Y GRANOS",[["Arroz largo fino 00000 (blanco)","",2700,1],["Arroz integral","",2600,1],["Arroz yamaní integral","",3500,1],["Arroz basmati","",6800,1],["Maíz pisado blanco","",3400,1],["Maíz amiláceo","",2500,1],["Maíz pisingallo","",2700,1],["Avena gruesa sin TACC (Dicomere)","1 unid.",4100,0],["Avena arrollada instantánea","",3300,1],["Avena arrollada tradicional","",3300,1],["Avena arrollada gruesa","",3300,1],["Avena arrollada fina","",3300,1],["Trigo pelado","",1400,1],["Sémola fina","",3800,1],["Salvado de avena","",3400,1],["Pan rallado","",2600,1],["Rebozador","",2600,1],["Copos de maíz con azúcar (bolsa de 4kg)","1 bolsa",3500,0],["Copos de maíz sin azúcar (bolsa de 3kg)","1 bolsa",2900,0],["Bolitas de chocolate (bolsa de 2kg)","1 bolsa",8100,0],["Aritos frutales (bolsa de 2kg)","1 bolsa",7900,0],["Almohaditas de chocolate negro/blanco (bolsa de 2,5kg)","1 bolsa",9700,0],["Fibra (bolsa de 2,5kg)","1 bolsa",5900,0],["Almohadita 2 salvados (bolsa de 1,5kg)","1 bolsa",6700,0],["Almohaditas frutilla/avellana/limón/maní (bolsa de 2,5kg)","1 bolsa",8900,0],["Snucks avellana-chocolate-limón (caja 240gr)","1 unid.",2700,0],["Snucks vainilla y caramelo (caja 240gr)","1 unid.",2700,0],["Quinoa pop arándano (bolsa 3kg)","1 bolsa",8700,0],["Quinoa pop (bolsa 3kg)","1 bolsa",7400,0],["Quinoa pop sin azúcar (bolsa 3kg)","1 bolsa",7400,0],["Quinoa pop algarroba (bolsa 3kg)","1 bolsa",8200,0],["Tostaditas de quinoa (paquete 120gr)","1 unid.",2000,0],["Tostaditas de chía (paquete 120gr)","1 unid.",2000,0]]],["HARINAS Y PREMEZCLAS",[["Harina de coco","",4300,1],["Harina de almendras con piel","",4100,1],["Harina de almendras sin piel","",4100,1],["Harina de lino","",3400,1],["Harina de maní","",3100,1],["Harina de arroz","",2600,1],["Harina paraguaya","",2600,1],["Harina de garbanzo","",2300,1],["Harina integral","",2300,1],["Harina de pistacho","",7000,1],["Harina de avena","",3400,1],["Premezcla universal sin TACC","500gr",3900,0],["Premezcla rebozador sin TACC","500gr",4000,0],["Premezcla pan sin TACC","500gr",4000,0],["Premezcla pizza sin TACC","500gr",4000,0],["Bizcochuelo sin TACC (chocolate/vainilla)","500gr",4000,0],["Premezcla ñoquis sin TACC","500gr",5100,0],["Premezcla pan integral sin TACC","500gr",3900,0]]],["ACEITES",[["Aceite de coco neutro 360cc (Bionativa Coconut)","1 unid.",6400,0],["Aceite de coco neutro 200cc (Bionativa Coconut)","1 unid.",5900,0],["Aceite de coco neutro 100cc (Bionativa Coconut)","1 unid.",3500,0],["Aceite de coco virgen 360cc (Bionativa Coconut)","1 unid.",10600,0],["Aceite de coco virgen 200cc (Bionativa Coconut)","1 unid.",9100,0],["Aceite de coco virgen 100cc (Bionativa Coconut)","1 unid.",6800,0],["Aceite de coco virgen 800cc (Bionativa Coconut)","1 unid.",20700,0],["Aceite de coco neutro 800cc (Bionativa Coconut)","1 unid.",13500,0],["Aceite de oliva 500cc","1 unid.",6500,0],["Aceite de oliva 2L","1 unid.",10500,0],["Aceite de oliva virgen extra 500ml (Olivícola Laur)","1 unid.",20700,0],["Aceite de oliva virgen extra 1L (Olivícola Laur)","1 unid.",38500,0],["Aceite de oliva Laur Blend de Terrior (lata 500ml)","1 unid.",23100,0],["Aceite de oliva Laur Cruz de Piedra orgánico (500ml)","1 unid.",23100,0],["Aceite de oliva Laur Variedad Arbequina (lata 1L)","1 unid.",38500,0],["Aceite de palta avocado","1 unid.",14700,0],["Aceite de ricino 100cc","1 unid.",6100,0],["Aceite de almendras 100cc","1 unid.",6100,0],["Aceite de almendras 250cc","1 unid.",8400,0],["Aceite de jojoba 100cc","1 unid.",9300,0],["Aceite de chía 100cc","1 unid.",6600,0],["Aceite de chía 250cc","1 unid.",9000,0],["Aceite de lino 100cc","1 unid.",6100,0],["Aceite de lino 250cc","1 unid.",7600,0],["Aceite de quinoa 100cc","1 unid.",6600,0],["Aceite de quinoa 250cc","1 unid.",8600,0],["Aceite de sésamo 100cc","1 unid.",6300,0],["Aceite de sésamo 250cc","1 unid.",7800,0],["Aceite de orégano 30cc","1 unid.",7800,0],["Aceite de romero 30cc","1 unid.",7800,0],["Aceite de rosa mosqueta 30cc","1 unid.",11000,0],["Aceite de hibiscus orgánico 30cc","1 unid.",7300,0]]],["ALFAJORES Y GALLETAS",[["Alfajor de nuez relleno de dulce de leche (blanco)","1 unid.",2300,0],["Alfajor de zapallo y algarroba relleno de dulce de leche (negro)","1 unid.",2300,0],["Alfajor de avellanas relleno de membrillo","1 unid.",2300,0],["Alfajor de cacao y maní relleno de dulce de leche (blanco)","1 unid.",2300,0],["Alfajor de maní relleno de dulce de leche (negro)","1 unid.",2300,0],["Galletitas de nuez bañadas en chocolate blanco 170gr","1 unid.",4200,0],["Galletitas de nuez 130gr","1 unid.",2900,0],["Galletitas de cacao y maní 130gr","1 unid.",2900,0],["Galletitas con cajú y chips de chocolate sin azúcar 130gr","1 unid.",3900,0],["Galletitas con almendras y cacao sin azúcar 130gr","1 unid.",3900,0],["Alfajor de avena con chocolate sin azúcar","1 unid.",2900,0],["Alfajor de avena con dulce de leche y stevia","1 unid.",3100,0],["Galleta fit 100% avena (pre-entreno)","1 unid.",2400,0],["Galleta fit 100% avena y maní (con proteínas)","1 unid.",2700,0]]],["FRUTAS DESECADAS Y PASAS",[["Cereza glaseada","",28500,1],["Fruta glaseada","",10300,1],["Cáscara de naranja en tira","",10000,1],["Cáscara de limón en tira","",10600,1],["Cereza con carozo","",12900,1],["Fruta escurrida","",5600,1],["Fruta nevada","",8700,1],["Empaque mixto sin carozo","",16200,1],["Damasco nacional","",9700,1],["Durazno medallón chico","",17800,1],["Papaya en cubo","",10100,1],["Pera Cimafru grandes","",21600,1],["Pasas de uva","",6700,1],["Pasas de uva súper jumbo","",8400,1],["Pasas de uva flame","",5400,1],["Pasas de uva rubias baratas","",8400,1],["Pasas de uva rubias Muravnik","",10900,1],["Ciruela sin carozo mediana Rosali 110/132","",10100,1],["Ciruela presidente Cimafru","",17900,1],["Tomate deshidratado","",14700,1],["Higo negro sellado al vacío","",14800,1],["Arándanos rojos deshidratados EE.UU","",20900,1],["Dátiles de Egipto (con carozo)","",7000,1],["Dátiles de Irán (con carozo)","",6800,1],["Dátil Medjool (con carozo)","",29200,1],["Bananas chips","",14700,1],["Coco rallado low fat","",7100,1],["Coco en escamas","",18100,1],["Coco rallado medium fat","",9900,1],["Coco rallado high fat Vietnam","",13600,1]]],["YERBAS, INFUSIONES Y HIERBAS",[["Yerba Canarias Original 1kg","1 unid.",14700,0],["Yerba Canarias Original 500gr","1 unid.",7800,0],["Yerba Canarias Serena 1kg","1 unid.",15800,0],["Yerba Canarias Serena 500gr","1 unid.",8400,0],["Yerba Canarias Edición Especial 1kg","1 unid.",16500,0],["Yerba Canarias Té Verde y Jengibre 1kg","1 unid.",16500,0],["Yerba Canarias Té Verde y Jengibre 500gr","1 unid.",8600,0],["Yerba Kalena despalillada 1/2kg","1 unid.",6200,0],["Yerba Kalena despalillada 2kg","1 unid.",22400,0],["Yerba Kalena tradicional 1/2kg","1 unid.",5100,0],["Yerba Kalena tradicional 2kg","1 unid.",18400,0],["Yerba Roapipo tradicional 500gr","1 unid.",5300,0],["Yerba Roapipo suave 1kg","1 unid.",10400,0],["Yerba Herencia 500gr","1 unid.",2200,0],["Infusiones surtidas (caja x20u)","1 caja x20u",7500,0],["Infusión de cáñamo (caja x20u)","1 caja x20u",8900,0],["Té surtido (caja x20u)","1 caja x20u",7500,0],["Manzanilla premium","",35900,1],["Flor de hibiscus","",17200,1],["Stevia en hojas","",21900,1],["Siempre viva","",58000,1],["Pétalos de rosa","",60600,1]]],["GRANOLAS Y BARRITAS",[["Granola Kos Food 1kg","1 unid.",9300,0],["Granola Orann energética","1 unid.",11500,0],["Granola Orann clásica","1 unid.",8800,0],["Granola Orann light","1 unid.",7300,0],["Granola Orann crujiente","1 unid.",10100,0],["Granola Orann sin endulzar","1 unid.",11500,0],["Granola Orann especial","1 unid.",13300,0],["Granola natural","",4400,1],["Barritas mix energético Orann","",16300,1],["Barritas surtido crocante Orann","",13500,1],["Barritas Mueca (banana y DDL / cacao avellana y coco / manzana y arándano / pasas y almendras / pasas y arándanos)","1 unid.",2400,0],["Barritas Pont Energy (bordo) carbohidrato y cafeína con pasta de dátiles","1 unid.",2500,0],["Barritas Pont (turquesa) crispín proteico de soja con baño semiamargo, mosto de uva, pasta de maní y cúrcuma","1 unid.",3200,0],["Barrita crocante mix marca Ávila (maní, almendra, arándano, chía, girasol y arroz inflado)","1 unid.",1500,0],["Barrita crocante de maní marca Ávila","1 unid.",1400,0],["Barritas Entrenuts proteica energética (chocolate maní / naranja chocolate / lemon pie / frutilla)","1 unid.",2200,0]]],["FRUTOS SECOS",[["Nuez cáscara 34/36","",8400,1],["Nuez mariposa extra light","",17500,1],["Nuez cuarto extra light","",15200,1],["Nuez mariposa light","",13700,1],["Nuez cuarto light","",12100,1],["Nuez cuartillo extra light","",13200,1],["Nuez pecan mariposa","",28600,1],["Almendra non pareil Chile 27/30","",29400,1],["Almendra guara mediana","",26100,1],["Almendra guara chica","",24900,1],["Avellana chica","",39500,1],["Maní japonés","",5900,1],["Maní crocante (chili peper - jalapeño - jamón - pizza - queso)","",5400,1],["Maní tostado repelado con sal","",4200,1],["Maní tostado repelado sin sal","",4200,1],["Maní crudo con piel","",3800,1],["Castañas de Pará partidas","",40100,1],["Castañas de Pará","",43800,1],["Castañas de cajú naturales W4","",19400,1],["Castañas de cajú tostadas sin sal","",24800,1],["Castañas de cajú tostadas y saladas","",24800,1],["Pistacho pelado sin sal","",70700,1],["Pistacho con cáscara","",43700,1]]],["ESENCIAS Y SABORIZANTES",[["Esencia panettone 35cc","1 unid.",2000,0],["Esencia de vainilla 35cc","1 unid.",2000,0],["Esencia de vainilla 100cc","1 unid.",2400,0],["Aroma de azar 35cc","1 unid.",1900,0],["Vainilla 1 LT","1 unid.",4700,0],["Stevia líquida 150cc","1 unid.",3700,0],["Extracto de malta 100grs","1 unid.",2700,0]]],["SUPLEMENTOS Y PROTEÍNA",[["Maca negra 500gr","1 unid.",3200,0],["Maca negra 150gr","1 unid.",2300,0],["Maca Kalpa 500gr","1 unid.",2800,0],["Maca roja 500gr","1 unid.",2700,0],["Suplementos (colágeno, cartílago, maca roja, moringa, harina de cannabis, harina de coca y calcio)","1 unid.",1500,0],["Cookies proteica con chips de chocolate 220gr","1 unid.",8500,0],["Chía puddings 280gr","1 unid.",13200,0],["Gelatina proteica frutilla/durazno 150gr","1 unid.",10500,0],["Cupcakes proteico chocolate 360gr","1 unid.",15900,0],["Keto cupcakes chocolate/vainilla","1 unid.",12100,0],["Keto pancakes vainilla/chocolate 200gr","1 unid.",13500,0],["Pancakes proteico vainilla/chocolate 400gr","1 unid.",17900,0],["Citrato de magnesio 144gr","1 unid.",13800,0],["Omelettes proteicos jamón y queso 210gr","1 unid.",16400,0],["Pancakes proteico caprese 400gr","1 unid.",15900,0],["Colágeno hidrolizado clear (natural) 250gr","1 unid.",26300,0],["Creatina micronizada 300gr","1 unid.",31700,0],["Aislado proteína de arveja natural 453gr","1 unid.",21600,0]]],["MIX DE FRUTOS SECOS",[["Mix sin maní - línea superior (pasas rubias, jumbo, cajú, almendra non pareil y nuez cuarto extra)","",14100,1],["Mix premium - línea superior (mariposa extra light, cajú y almendra non pareil)","",24400,1],["Mix tropical - línea superior (non pareil, cuarto extra light, banana, pasas rubias, pasas jumbo y maní)","",11200,1],["Mix papaya - línea superior (papaya, non pareil, cuarto extra light, banana, pasas rubias, pasas jumbo y maní)","",11300,1],["Mix desayuno - línea superior (copos sin azúcar, quinoa pop natural, quinoa pop arándanos, maní sin sal, pasas jumbo mediana y almendra non pareil)","",8000,1],["Mix griego - línea superior (pasas jumbo mediana, pasas rubias, arándanos, cajú natural y almendra non pareil)","",14100,1],["Mix premium con maní - línea superior (mariposa extra light, cajú, almendras non pareil y maní)","",17300,1],["Mix común - línea superior (non pareil, cuarto extra light, pasas rubias, pasas jumbo y maní)","",10800,1],["Mix premium con avellana - línea superior (mariposa extra light, non pareil, cajú y avellana)","",26400,1],["Mix salado - línea superior (maní japonés, maíz frito, maní con sal, semilla zapallo, semilla girasol y castañas de cajú tostadas y saladas)","",9600,1]]],["MIELES",[["Miel de 1/2kg (pack 12)","1 unid.",3100,0],["Miel de 1kg (pack 6)","1 unid.",4700,0],["Miel de 2kg (pack 4)","1 unid.",8500,0],["Miel de 250gr (pack 12)","1 unid.",2100,0],["Miel líquida Entrenut 500gr (pack 12)","1 unid.",6600,0],["Miel cremosa Entrenut 500gr (pack 12)","1 unid.",6600,0],["Miel de carpincho 100cc","1 unid.",2400,0],["Miel de carpincho 250cc","1 unid.",2800,0]]],["AZÚCARES, SALES Y REPOSTERÍA",[["Fécula de mandioca","",3700,1],["Fécula de papa","",4400,1],["Almidón de maíz Femag","",3100,1],["Bicarbonato de sodio","",3300,1],["Grana de maní","",3800,1],["Gelatina sin sabor","",25900,1],["Cacao amargo","",11200,1],["Sal del Himalaya (fina - gruesa)","",3500,1],["Cacao en grano orgánico secado al sol","",38700,1],["Sal gruesa marina Macrozen 500gr","1 unid.",2600,0],["Sal fina marina Macrozen 500gr","1 unid.",2600,0],["Azúcar impalpable / rubia / negra","",3300,1],["Azúcar mascabo Balaju","",7700,1],["Polvo de hornear 750gr","1 unid.",7100,0],["Goma xántica 40cc","1 unid.",3700,0]]],["PASTAS DE MANÍ",[["Pasta de maní Pop! natural","1 unid.",2800,0],["Pasta de maní Pop! dulce de leche","1 unid.",2800,0],["Pasta de maní Pop! crocante","1 unid.",2800,0],["Entrenut natural/crocante","1 unid.",3500,0],["Entrenut ahumada/cacao/coco/stevia/semillas","1 unid.",3500,0],["Entrenut con sal marina","1 unid.",3500,0],["Entrenut proteica cookies&cream / salted caramel","1 unid.",4800,0],["Oddis natural","1 unid.",3400,0],["Entrenut 1kg natural","1 unid.",7000,0]]],["BANDEJAS ARMADAS",[["Bandeja salada (maní vaina, maní japonés, maíz frito clásico, maní con sal, pistacho con cáscara y maní crocante sabor pizza)","1 unid.",6600,0],["Bandeja premium (maní con chocolate leche, lentejas de chocolate, cereal chocolate blanco, garrapiñada de maní, bananita con chocolate y pasas con chocolate)","1 unid.",12600,0],["Bandeja mix chocolate (marroc, botoncitos rellenos de dulce de leche, maní con chocolate leche, lentejas de chocolate, cereal chocolate blanco y garrapiñada de maní)","1 unid.",11900,0],["Bandeja de frutos secos (nuez mariposa, almendra non pareil, castañas de cajú, pasas de uva jumbo, garrapiñada de maní y pistacho con cáscara)","1 unid.",11900,0]]],["LEGUMBRES",[["Porotos pallares peruanos","",6600,1],["Porotos alubia","",3800,1],["Porotos negro","",3200,1],["Porotos colorado","",3900,1],["Porotos manteca","",4500,1],["Porotos aduki","",3200,1],["Porotos mung","",2800,1],["Porotos tape","",2700,1],["Garbanzo","",3000,1],["Lenteja nacional","",3700,1],["Lentejón Canadá","",4900,1],["Lenteja turca","",5200,1]]],["CONDIMENTOS Y ESPECIAS",[["Ajo granulado","",11200,1],["Ajo en polvo","",6900,1],["Pimienta negra en grano","",22300,1],["Pimentón extra","",9000,1],["Orégano","",9100,1],["Curry","",11900,1],["Canela molida premium","",11600,1],["Vinagre balsámico Millán","1 unid.",9100,0],["Vinagre balsámico Millán ahumado","1 unid.",9100,0],["Vinagre balsámico Millán tipo italiano","1 unid.",9100,0]]],["JUGOS",[["Jugo de arándano con chía 1,5L","1 unid.",2400,0],["Jugo de arándano con stevia 1,5L","1 unid.",2400,0],["Jugo de limonada (menta y jengibre) 1,5L","1 unid.",2400,0],["Jugo Estancia Los Naranjos (naranja/pomelo/frutilla/ananá/maracuyá/limón menta jengibre)","1 unid.",3000,0]]],["GARRAPIÑADOS Y SNACKS",[["Maíz frito original","",14300,1],["Maíz frito queso","",14500,1],["Maíz frito barbacoa","",14500,1],["Garrapiñada de maní","",5500,1],["Garrapiñada de almendra","",22400,1]]],["MERMELADAS",[["Mermelada Stevia 280gr (frutos rojos/higo/frutilla/ciruela/durazno)","1 unid.",4300,0]]],["MANTECAS",[["Manteca clarificada 150gr (Entrenut)","1 unid.",6900,0],["Manteca clarificada 300gr (Entrenut)","1 unid.",12500,0]]],["LECHES VEGETALES",[["Leche de almendra Amande 1L","1 unid.",7200,0],["Leche de almendra Amande sin azúcar 1L","1 unid.",6100,0]]]];
+const PHONE = "5491125481970";
+const fmt = n => "$" + Math.round(n).toLocaleString("es-AR");
+const items = [];
+DATA.forEach(([cat, list], ci) => list.forEach(([name, pres, price, kg]) => items.push({id: items.length, cat, ci, name, pres, price, kg: !!kg})));
+let cart = {};
+try { cart = JSON.parse(localStorage.getItem("chala_cart") || "{}") || {}; } catch (e) { cart = {}; }
+const save = () => { try { localStorage.setItem("chala_cart", JSON.stringify(cart)); } catch (e) {} };
+const step = it => it.kg ? 0.25 : 1;
+const qtyText = (it, q) => {
+  if (!it.kg) return q + (q === 1 ? " unidad" : " unidades");
+  if (q < 1) return Math.round(q * 1000) + " g";
+  return (Number.isInteger(q) ? q : q.toLocaleString("es-AR")) + " kg";
+};
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+const chips = document.getElementById("chips");
+DATA.forEach(([cat], ci) => {
+  const b = document.createElement("button");
+  b.className = "chip"; b.type = "button";
+  b.textContent = cat.charAt(0) + cat.slice(1).toLowerCase();
+  b.onclick = () => { document.getElementById("q").value = ""; render(); document.getElementById("cat" + ci).scrollIntoView(); };
+  chips.appendChild(b);
+});
+function control(it) {
+  const q = cart[it.id] || 0;
+  const wrap = document.createElement("div");
+  if (!q) {
+    const b = document.createElement("button");
+    b.className = "btn"; b.type = "button"; b.textContent = "Agregar";
+    b.setAttribute("aria-label", "Agregar " + it.name);
+    b.onclick = () => setQty(it, it.kg ? 0.5 : 1);
+    wrap.appendChild(b);
+  } else {
+    wrap.className = "step";
+    const m = document.createElement("button"); m.type = "button"; m.textContent = "−"; m.setAttribute("aria-label", "Menos");
+    m.onclick = () => { const nq = Math.round((q - step(it)) * 100) / 100; setQty(it, it.kg && nq < 0.5 ? 0 : nq); };
+    const s = document.createElement("span"); s.textContent = qtyText(it, q);
+    const p = document.createElement("button"); p.type = "button"; p.textContent = "+"; p.setAttribute("aria-label", "Más");
+    p.onclick = () => setQty(it, Math.round((q + step(it)) * 100) / 100);
+    wrap.append(m, s, p);
+  }
+  return wrap;
+}
+function setQty(it, q) {
+  if (q <= 0) delete cart[it.id]; else cart[it.id] = q;
+  save(); render(); renderCart();
+}
+function render() {
+  const q = norm(document.getElementById("q").value.trim());
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+  let shown = 0;
+  DATA.forEach(([cat], ci) => {
+    const its = items.filter(it => it.ci === ci && (!q || norm(it.name).includes(q)));
+    if (!its.length) return;
+    const sec = document.createElement("section"); sec.id = "cat" + ci;
+    const h = document.createElement("h2"); h.textContent = cat; sec.appendChild(h);
+    its.forEach(it => {
+      shown++;
+      const row = document.createElement("div"); row.className = "item";
+      const n = document.createElement("div"); n.className = "name"; n.textContent = it.name;
+      if (it.pres) { const p = document.createElement("span"); p.className = "pres"; p.textContent = it.pres; n.appendChild(p); }
+      const r = document.createElement("div"); r.className = "right";
+      const pr = document.createElement("div"); pr.className = "price"; pr.textContent = fmt(it.price);
+      const per = document.createElement("span"); per.className = "per"; per.textContent = it.kg ? "el kilo" : "c/u"; pr.appendChild(per);
+      r.append(pr, control(it));
+      row.append(n, r); sec.appendChild(row);
+    });
+    list.appendChild(sec);
+  });
+  if (!shown) list.innerHTML = '<p class="empty">No encontramos ese producto. Probá con otra palabra o escribinos por WhatsApp.</p>';
+}
+function buildMessage(lines, total) {
+  const nm = document.getElementById("nm").value.trim();
+  const zn = document.getElementById("zn").value.trim();
+  const nt = document.getElementById("nt").value.trim();
+  let t = "Hola Chala Diet! Quiero hacer este pedido:\n\n";
+  lines.forEach(([it, q, sub]) => { t += "• " + it.name + " — " + qtyText(it, q) + " — " + fmt(sub) + "\n"; });
+  t += "\nTotal estimado: " + fmt(total);
+  if (nm) t += "\nNombre: " + nm;
+  if (zn) t += "\nZona/dirección: " + zn;
+  if (nt) t += "\nNota: " + nt;
+  return t;
+}
+function renderCart() {
+  const lines = Object.entries(cart).map(([id, q]) => { const it = items[+id]; return it ? [it, q, it.price * q] : null; }).filter(Boolean);
+  const total = lines.reduce((a, l) => a + l[2], 0);
+  document.getElementById("bar").hidden = !lines.length;
+  document.getElementById("cart").hidden = !lines.length;
+  document.getElementById("count").textContent = lines.length + (lines.length === 1 ? " producto" : " productos");
+  document.getElementById("tot").textContent = fmt(total);
+  document.getElementById("tot2").textContent = fmt(total);
+  const box = document.getElementById("lines"); box.innerHTML = "";
+  lines.forEach(([it, q, sub]) => {
+    const d = document.createElement("div"); d.className = "cline";
+    const a = document.createElement("div"); a.textContent = it.name;
+    const s2 = document.createElement("div"); s2.className = "sub2"; s2.textContent = fmt(it.price) + (it.kg ? " el kilo" : " c/u"); a.appendChild(s2);
+    const c = control(it); const p = document.createElement("strong"); p.textContent = fmt(sub);
+    d.append(a, c, p); box.appendChild(d);
+  });
+  const msg = buildMessage(lines, total);
+  document.getElementById("msg").textContent = msg;
+  document.getElementById("wa").href = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(msg);
+}
+["nm", "zn", "nt"].forEach(id => document.getElementById(id).addEventListener("input", renderCart));
+document.getElementById("q").addEventListener("input", render);
+document.getElementById("copy").onclick = async () => {
+  const t = document.getElementById("msg").textContent;
+  try { await navigator.clipboard.writeText(t); document.getElementById("copied").textContent = "Mensaje copiado"; }
+  catch (e) { const r = document.createRange(); r.selectNodeContents(document.getElementById("msg")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); document.getElementById("copied").textContent = "Seleccioné el mensaje: copialo con Ctrl+C o mantené apretado"; }
+};
+document.getElementById("clear").onclick = () => { cart = {}; save(); render(); renderCart(); };
+render(); renderCart();
+</script>
+
+</body>
+</html>
